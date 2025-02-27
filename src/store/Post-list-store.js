@@ -20,8 +20,8 @@ const PostListProvider = ( {children} ) => {
 
     };
 
-    const deletePost = () => {
-
+    const deletePost = (postId) => {
+        console.log(`delete Post called for: ${postId}`)
     }
 
 
