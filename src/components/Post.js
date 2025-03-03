@@ -23,8 +23,8 @@ const {deletePost} = useContext(PostList);
     
   </div>
 
-  <div className="alert alert-success reaction" role="alert">
-  This post has been reacted by {post.reaction} people.
+  <div className="alert alert-success reactions" role="alert">
+  This post got Likes: {post.reactions.likes} & Dislikes: {post.reactions.dislikes} by people.
 </div>
 </div>
     );

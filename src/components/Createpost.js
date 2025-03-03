@@ -8,7 +8,7 @@ const Createpost = () => {
 const userIdElement = useRef();
 const postTitleElement = useRef();
 const postBodyElement = useRef();
-const reactionElement = useRef();
+const reactionsElement = useRef();
 const tagsElement = useRef();
 
 const handleSubmit = (event) => {
@@ -16,19 +16,23 @@ const handleSubmit = (event) => {
   const userId = userIdElement.current.value;
   const postTitle = postTitleElement.current.value;
   const postBody = postBodyElement.current.value;
-  const reaction = reactionElement.current.value;
+  const reactions = {
+    likes: Number(reactionsElement.current.value.split(' ')[0]) || 0,
+    deslikes: Number(reactionsElement.current.value.split(' ')[1]) || 0
+
+  };
   const tags = tagsElement.current.value.split(' ')
 
   userIdElement.current.value = "";
   postTitleElement.current.value = "";
   postBodyElement.current.value = "";
-  reactionElement.current.value = "";
+  reactionsElement.current.value = "";
   tagsElement.current.value = "";
 
 
 
 
-  addPost(userId, postTitle, postBody, reaction, tags);
+  addPost(userId, postTitle, postBody, reactions, tags);
 }
 
     return(
@@ -46,8 +50,8 @@ const handleSubmit = (event) => {
     <textarea ref={postBodyElement} required rows={4} placeholder="Tell us more about it." type="text" className="form-control" id="body" />
   </div>
   <div className="mb-3">
-    <label htmlFor="reaction" className="form-label">Number of Reaction</label>
-    <input ref={reactionElement} required placeholder="How many people reacted" type="text" className="form-control" id="reaction" />
+    <label htmlFor="reactions" className="form-label">Number of reactions</label>
+    <input ref={reactionsElement} required placeholder="How many people reacted" type="text" className="form-control" id="reactions" />
   </div> 
   <div className="mb-3">
     <label htmlFor="tags" className="form-label">Enter your Hashtags</label>
