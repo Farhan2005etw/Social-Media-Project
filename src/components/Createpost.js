@@ -18,7 +18,7 @@ const handleSubmit = (event) => {
   const postBody = postBodyElement.current.value;
   const reactions = {
     likes: Number(reactionsElement.current.value.split(' ')[0]) || 0,
-    deslikes: Number(reactionsElement.current.value.split(' ')[1]) || 0
+    dikslikes: Number(reactionsElement.current.value.split(' ')[1]) || 0
 
   };
   const tags = tagsElement.current.value.split(' ')
@@ -29,7 +29,20 @@ const handleSubmit = (event) => {
   reactionsElement.current.value = "";
   tagsElement.current.value = "";
 
-
+  fetch('https://dummyjson.com/posts/add', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      
+      title: postTitle,
+      body: postBody,
+      reactions: reactions,
+      userId: userId,
+      tags: tags,
+  })
+  })
+  .then(res => res.json())
+  .then(console.log);
 
 
   addPost(userId, postTitle, postBody, reactions, tags);
